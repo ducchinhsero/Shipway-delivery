@@ -1,0 +1,70 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Order Table</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body data-protected data-required-role="user">
+
+<div class="card">
+  <!-- Header -->
+  <div class="card-header">
+    <div class="title">
+      <button class="btn-back" onclick="history.back()">←</button>
+      <h4>Lịch sử vận chuyển</h4>
+      <span class="badge-total" id="orderCount"></span>
+    </div>
+    <div class="actions">
+      <select id="timeFilter" >
+        <option value="all">Xem toàn bộ</option>
+        <option value="7">7 ngày</option>
+        <option value="30">30 ngày</option>
+        <option value="60">60 ngày</option>
+        <option value="90">90 ngày</option>
+      </select>
+      <select id="statusFilter" style="padding-right: 25px;">
+        <option>Tất cả trạng thái</option>
+        <option>Đã giao</option>
+        <option>Đang vận chuyển</option>
+        <option>Chờ xử lý</option>
+      </select>
+      <div id="nameFilterWrap" class="name-filter-wrap">
+        <input
+          type="text"
+          id="nameFilter"
+          class="name-filter-input"
+          placeholder="Tìm theo tên người nhận..."
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Table -->
+  <div class="table-wrapper">
+    <table>
+      <thead class="right">
+        <tr>
+          <th class="right">Mã đơn hàng</th>
+          <th>Ngày</th>
+          <th>Người gửi</th>
+          <th>Trạng thái</th>
+          <th>Tổng tiền</th>
+          <th class="right"></th>
+        </tr>
+      </thead>
+      <tbody id="orderTableBody"></tbody>
+    </table>
+  </div>
+
+  <!-- Footer -->
+  <div class="card-footer">
+    <p id="resultText"></p>
+  </div>
+</div>
+
+<script type="module" src="js/main.js"></script>
+  <!-- Auth Protection -->
+  <script type="module" src="../../shared/auth-guard.js"></script>
+</body>
+</html>

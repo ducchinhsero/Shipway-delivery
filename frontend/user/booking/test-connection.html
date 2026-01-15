@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Connection - Shipway</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 20px;
+            background: #f5f5f5;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 4px;
+            margin: 10px 0;
+        }
+        .success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .error {
+            background: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 5px;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        pre {
+            background: #f4f4f4;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+        h2 {
+            color: #333;
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🔍 Test Kết Nối API - Shipway</h1>
+
+    <div class="box">
+        <h2>1. Thông Tin Hiện Tại</h2>
+        <div id="currentInfo"></div>
+    </div>
+
+    <div class="box">
+        <h2>2. Kiểm Tra Backend</h2>
+        <button onclick="testBackend()">Test Backend Connection</button>
+        <div id="backendStatus"></div>
+    </div>
+
+    <div class="box">
+        <h2>3. Kiểm Tra Token</h2>
+        <button onclick="checkToken()">Check Token</button>
+        <div id="tokenStatus"></div>
+    </div>
+
+    <div class="box">
+        <h2>4. Test API Orders (GET)</h2>
+        <button onclick="testGetOrders()">Test GET /api/v1/orders</button>
+        <div id="getOrdersStatus"></div>
+    </div>
+
+    <div class="box">
+        <h2>5. Test API Orders (POST - Fake Data)</h2>
+        <button onclick="testCreateOrder()">Test POST /api/v1/orders</button>
+        <div id="createOrderStatus"></div>
+    </div>
+
+    <script>
+        // Display current info
+        function showCurrentInfo() {
+            const info = `
+                <div class="info">
+                    <strong>Current URL:</strong> ${window.location.href}<br>
+                    <strong>Origin:</strong> ${window.location.origin}<br>
+                    <strong>Protocol:</strong> ${window.location.protocol}<br>
+                    <strong>API Base URL:</strong> ${window.location.origin}
+                </div>
+            `;
+            document.getElementById('currentInfo').innerHTML = info;
+
+            // Check if opened from file system
+            if (window.location.protocol === 'file:') {
+                document.getElementById('currentInfo').innerHTML += `
+                    <div class="error">
+                        <strong>⚠️ CẢNH BÁO:</strong> Bạn đang mở file trực tiếp từ file system!<br>
+                        Hãy truy cập qua: <a href="http://localhost:8000/frontend/user/booking/test-connection.html" target="_blank">
+                            http://localhost:8000/frontend/user/booking/test-connection.html
+                        </a>
+                    </div>
+                `;
+            }
+        }
+
+        // Test backend connection
+        async function testBackend() {
+            const statusEl = document.getElementById('backendStatus');
+            statusEl.innerHTML = '<div class="info">⏳ Đang kiểm tra...</div>';
+
+            try {
+                const response = await fetch('http://localhost:8000/');
+                const data = await response.json();
+                
+                statusEl.innerHTML = `
+                    <div class="success">
+                        ✅ Backend đang chạy!<br>
+                        <strong>App:</strong> ${data.app || data.message}<br>
+                        <strong>Version:</strong> ${data.version}
+                    </div>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                statusEl.innerHTML = `
+                    <div class="error">
+                        ❌ Không thể kết nối backend!<br>
+                        <strong>Lỗi:</strong> ${error.message}<br><br>
+                        <strong>Giải pháp:</strong><br>
+                        1. Kiểm tra backend có đang chạy không (python run.py)<br>
+                        2. Kiểm tra port 8000 có bị block không<br>
+                        3. Truy cập: <a href="http://localhost:8000" target="_blank">http://localhost:8000</a>
+                    </div>
+                `;
+            }
+        }
+
+        // Check token
+        function checkToken() {
+            const statusEl = document.getElementById('tokenStatus');
+            const token = localStorage.getItem('access_token');
+
+            if (!token) {
+                statusEl.innerHTML = `
+                    <div class="error">
+                        ❌ Không tìm thấy token!<br>
+                        <strong>Giải pháp:</strong> Đăng nhập lại tại 
+                        <a href="http://localhost:8000/frontend/auth/index.html" target="_blank">
+                            trang đăng nhập
+                        </a>
+                    </div>
+                `;
+            } else {
+                // Decode JWT (basic)
+                try {
+                    const payload = JSON.parse(atob(token.split('.')[1]));
+                    const exp = new Date(payload.exp * 1000);
+                    const now = new Date();
+                    const isExpired = now > exp;
+
+                    statusEl.innerHTML = `
+                        <div class="${isExpired ? 'error' : 'success'}">
+                            ${isExpired ? '⚠️' : '✅'} Token ${isExpired ? 'đã hết hạn' : 'hợp lệ'}!<br>
+                            <strong>User ID:</strong> ${payload.sub}<br>
+                            <strong>Expires:</strong> ${exp.toLocaleString()}<br>
+                            <strong>Status:</strong> ${isExpired ? 'HẾT HẠN' : 'CÒN HẠN'}
+                        </div>
+                        <pre>Token: ${token.substring(0, 50)}...</pre>
+                    `;
+                } catch (e) {
+                    statusEl.innerHTML = `
+                        <div class="error">
+                            ❌ Token không hợp lệ!<br>
+                            <strong>Lỗi:</strong> ${e.message}
+                        </div>
+                    `;
+                }
+            }
+        }
+
+        // Test GET orders
+        async function testGetOrders() {
+            const statusEl = document.getElementById('getOrdersStatus');
+            statusEl.innerHTML = '<div class="info">⏳ Đang gọi API...</div>';
+
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                statusEl.innerHTML = '<div class="error">❌ Không có token! Hãy đăng nhập trước.</div>';
+                return;
+            }
+
+            try {
+                const response = await fetch('http://localhost:8000/api/v1/orders?page=1&limit=5', {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'API error');
+                }
+
+                const data = await response.json();
+                
+                statusEl.innerHTML = `
+                    <div class="success">
+                        ✅ API hoạt động tốt!<br>
+                        <strong>Tổng đơn hàng:</strong> ${data.total}<br>
+                        <strong>Số đơn hiển thị:</strong> ${data.orders.length}
+                    </div>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                statusEl.innerHTML = `
+                    <div class="error">
+                        ❌ Lỗi khi gọi API!<br>
+                        <strong>Lỗi:</strong> ${error.message}
+                    </div>
+                `;
+            }
+        }
+
+        // Test POST create order (with fake data)
+        async function testCreateOrder() {
+            const statusEl = document.getElementById('createOrderStatus');
+            statusEl.innerHTML = '<div class="info">⏳ Đang tạo đơn test...</div>';
+
+            const token = localStorage.getItem('access_token');
+            if (!token) {
+                statusEl.innerHTML = '<div class="error">❌ Không có token! Hãy đăng nhập trước.</div>';
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append('pickup_address', '123 Test Street, Q1, TP.HCM');
+            formData.append('pickup_lat', '10.7769');
+            formData.append('pickup_lng', '106.7009');
+            formData.append('pickup_contact_name', 'Test User');
+            formData.append('pickup_contact_phone', '0912345678');
+            
+            formData.append('dropoff_address', '456 Test Avenue, Q2, TP.HCM');
+            formData.append('dropoff_lat', '10.7870');
+            formData.append('dropoff_lng', '106.7053');
+            formData.append('dropoff_contact_name', 'Test Receiver');
+            formData.append('dropoff_contact_phone', '0987654321');
+            
+            formData.append('product_name', 'Test Product');
+            formData.append('weight', '5');
+            formData.append('vehicle_type', 'bike');
+            formData.append('cod_amount', '0');
+
+            try {
+                const response = await fetch('http://localhost:8000/api/v1/orders', {
+                    method: 'POST',
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    },
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    const error = await response.json();
+                    throw new Error(error.detail || 'API error');
+                }
+
+                const data = await response.json();
+                
+                statusEl.innerHTML = `
+                    <div class="success">
+                        ✅ Tạo đơn thành công!<br>
+                        <strong>Order ID:</strong> ${data.order_id}<br>
+                        <strong>Tracking Code:</strong> ${data.tracking_code}<br>
+                        <strong>Total Amount:</strong> ${data.total_amount.toLocaleString('vi-VN')} VNĐ<br>
+                        <strong>Payment Required:</strong> ${data.payment_required ? 'Có' : 'Không'}
+                    </div>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            } catch (error) {
+                statusEl.innerHTML = `
+                    <div class="error">
+                        ❌ Lỗi khi tạo đơn!<br>
+                        <strong>Lỗi:</strong> ${error.message}<br><br>
+                        <strong>Có thể do:</strong><br>
+                        1. Token hết hạn → Đăng nhập lại<br>
+                        2. Không đủ tiền trong ví → Nạp thêm tiền<br>
+                        3. Dữ liệu không hợp lệ<br>
+                        4. Backend có lỗi
+                    </div>
+                `;
+            }
+        }
+
+        // Initialize
+        showCurrentInfo();
+    </script>
+</body>
+</html>

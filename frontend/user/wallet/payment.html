@@ -1,0 +1,163 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipway - Thanh toán đơn hàng</title>
+  <link rel="stylesheet" href="../shared/header.css">
+  <link rel="stylesheet" href="css/wallet.css">
+</head>
+
+<body data-page="wallet-payment" data-protected data-required-role="user">
+<div id="app-header"></div>
+<div class="page">
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <a href="index.html" class="back-home-btn" title="Quay về ví">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </a>
+      <div class="page-header-content">
+        <h1 class="page-title">Thanh toán đơn hàng</h1>
+        <p class="page-desc">
+          Thanh toán đơn hàng<br>
+          Chọn phương thức thanh toán
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== ORDER INFO ===== -->
+  <div class="card">
+    <h2>Thông tin đơn hàng</h2>
+    <div class="order-info">
+      <div class="info-row">
+        <span class="label">Mã đơn hàng:</span>
+        <span class="value" id="orderId">Order #1</span>
+      </div>
+      <div class="info-row">
+        <span class="label">Phí vận chuyển:</span>
+        <span class="value" id="shippingFee">25,000 ₫</span>
+      </div>
+      <div class="info-row total">
+        <span class="label">Tổng thanh toán:</span>
+        <span class="value" id="totalAmount">25,000 ₫</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAYMENT METHOD ===== -->
+  <div class="card">
+    <h3>Phương thức thanh toán</h3>
+    <div class="payment-methods">
+      <div class="payment-method" data-payment-method="wallet">
+        <div class="method-icon">💰</div>
+        <div class="method-info">
+          <div class="method-name">Số dư ví</div>
+          <div class="method-balance" id="walletBalanceDisplay">0.000 ₫</div>
+        </div>
+        <div class="method-radio"></div>
+      </div>
+
+      <div class="payment-method" data-payment-method="bankqr">
+        <div class="method-icon">📱</div>
+        <div class="method-info">
+          <div class="method-name">QR Ngân hàng</div>
+          <div class="method-desc">Chuyển khoản nhanh</div>
+        </div>
+        <div class="method-radio"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== PAYMENT BUTTON ===== -->
+<div class="card">
+  <button
+    id="payBtn"
+    class="btn-primary"
+    data-action="process-payment">
+    Thanh toán
+  </button>
+</div>
+
+  <!-- ===== PAYMENT STATUS ===== -->
+  <div class="card hidden" id="paymentStatus">
+    <h3>Trạng thái thanh toán</h3>
+    <div class="status-content">
+      <div class="loading-spinner" id="loadingSpinner"></div>
+      <p id="statusMessage">Đang xử lý thanh toán...</p>
+    </div>
+  </div>
+
+</div>
+
+<div id="app-footer"></div>
+
+<!-- Core scripts -->
+<script src="../shared/header.js"></script>
+<script src="js/wallet.js"></script>
+
+<!-- Simple QR Popup Script -->
+<script>
+window.addEventListener('load', function() {
+  // Get pay button
+  var payBtn = document.querySelector('[data-action="process-payment"]');
+  
+  // Pay button click
+  if (payBtn) {
+    payBtn.onclick = function(e) {
+      e.preventDefault();
+      
+      // Check if bankqr is selected
+      var activeMethod = document.querySelector('.payment-method.active');
+      if (activeMethod && activeMethod.getAttribute('data-payment-method') === 'bankqr') {
+        // Create popup
+        var popup = document.createElement('div');
+        popup.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);z-index:9999;display:flex;justify-content:center;align-items:center;';
+        
+        var content = document.createElement('div');
+        content.style.cssText = 'background:white;padding:30px;border-radius:10px;max-width:400px;text-align:center;';
+        
+        content.innerHTML = '<h3 style="margin:0 0 20px 0;">Thanh toán QR</h3>' +
+                          '<img src="img/qr.jpg" style="max-width:200px;margin-bottom:20px;" alt="QR Code">' +
+                          '<p style="margin:10px 0;"><strong>Ngân hàng:</strong> VietinBank</p>' +
+                          '<p style="margin:10px 0;"><strong>Số tài khoản:</strong> 9999999</p>' +
+                          '<p style="margin:10px 0;"><strong>Chủ tài khoản:</strong> CÔNG TY SHIPWAY</p>' +
+                          '<p style="margin:10px 0;"><strong>Nội dung:</strong> ID<đơn hàng> + tên User </p>' +
+                          '<p style="margin:10px 0;color:red;"><strong>Lưu ý:</strong> Vui lòng thanh toán đúng số tiền và Nội dung để được xử lý nhanh nhất</p>' +
+                          '<button onclick="window.location.href=\'index.html\'" style="margin-top:20px;padding:10px 20px;background:#28a745;color:white;border:none;border-radius:5px;cursor:pointer;">Tôi đã thanh toán qua QR</button>';
+        
+        popup.appendChild(content);
+        document.body.appendChild(popup);
+        
+        // Close when clicking outside
+        popup.onclick = function(e) {
+          if (e.target === popup) {
+            popup.remove();
+          }
+        };
+      }
+    };
+  }
+  
+  // Handle payment method selection
+  var paymentMethods = document.querySelectorAll('[data-payment-method]');
+  paymentMethods.forEach(function(method) {
+    method.onclick = function() {
+      paymentMethods.forEach(function(m) {
+        m.classList.remove('active');
+      });
+      this.classList.add('active');
+    };
+  });
+});
+</script>
+
+  <!-- Auth Protection -->
+  <script type="module" src="../../shared/auth-guard.js"></script>
+</body>
+</html>

@@ -1,0 +1,68 @@
+:root {
+  /* =====================================================
+     CONTAINER SYSTEM
+  ===================================================== */
+  --container-sm: 1200px;   /* form / auth / footer */
+  --container-lg: 1440px;   /* landing / feature */
+  --container-xl: 1600px;   /* hero / flow / visual */
+
+  /* =====================================================
+     SPACING SCALE
+  ===================================================== */
+  --space-xs: 8px;
+  --space-sm: 16px;
+  --space-md: 24px;
+  --space-lg: 48px;
+  --space-xl: 96px;
+
+  /* =====================================================
+     TYPOGRAPHY SCALE
+  ===================================================== */
+  --font-sm: 14px;
+  --font-base: 16px;
+  --font-lg: 20px;
+  --font-xl: 32px;
+  --font-xxl: 40px;
+
+  /* =====================================================
+     COLORS
+  ===================================================== */
+  --color-primary: #0f4c81;
+  --color-secondary: #f97316;
+  --color-text: #1f2937;
+  --color-muted: #6b7280;
+  --color-bg-light: #f9fafb;
+  --color-border: #e5e7eb;
+
+  /* =====================================================
+     RADIUS
+  ===================================================== */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+}
+
+/* =====================================================
+   RESPONSIVE TYPOGRAPHY
+===================================================== */
+@media (max-width: 1024px) {
+  :root {
+    --font-xxl: 32px;
+    --font-xl: 28px;
+    --font-lg: 18px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root {
+    --font-xxl: 24px;
+    --font-xl: 22px;
+    --font-lg: 16px;
+    --font-base: 14px;
+    --font-sm: 12px;
+    
+    --space-xl: 48px;
+    --space-lg: 32px;
+    --space-md: 16px;
+    --space-sm: 12px;
+  }
+}

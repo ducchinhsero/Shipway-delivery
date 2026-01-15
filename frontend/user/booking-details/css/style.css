@@ -1,0 +1,161 @@
+.booking-details {
+  background-color: #ffffff;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-bottom: 50px;
+  flex: 1 0 auto;
+}
+
+.booking-details .details {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 955px;
+  height: auto;
+  align-items: center;
+  gap: 16px;
+  padding: 20px;
+  background-color: #ffffff;
+  margin-top: 20px auto;
+  
+  top: auto;
+  left: auto;
+  background-color: #ffffff;
+}
+
+.booking-details .detail-row {
+  display: flex;
+  height: auto;
+  min-height: 60px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.booking-details .label {
+  position: relative;
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  width: 250px;
+  height: auto;
+  font-weight: 700;
+  color: #000000;
+  font-size: 24px;
+  line-height: 1.4;
+  letter-spacing: 0;
+  line-height: normal;
+  flex-shrink: 0;
+}
+
+.booking-details .value {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex: 1;
+  font-weight: 400;
+  color: #000000;
+  font-size: 20px;
+  text-align: right;
+  letter-spacing: 0;
+  line-height: normal;
+  white-space: normal;
+}
+
+.booking-details .p {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  font-weight: 500;
+  color: #000000;
+  font-size: 20px;
+  text-align: right;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+.booking-details .image-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  flex-direction: row;
+  gap: 10px;
+  padding: 10px 0;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  background-color: #ffffff;
+}
+
+.booking-details .image-item {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #00000080;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.booking-details .image-item:hover {
+  opacity: 0.8;
+}
+
+.name {
+  width: 58px;
+  padding: 4px 12px;
+  position: relative;
+  border: none;
+  background: none;
+  flex: 1;
+  margin-top: -1.00px;
+  font-weight: 700;
+  color: #00000080;
+  font-size: 12px;
+  letter-spacing: 0;
+  line-height: normal;
+}
+
+/* Giao diện Pop-up phóng to */
+.popup-overlay {
+  display: none; 
+  position: fixed;
+  z-index: 10000; 
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.9);
+  justify-content: center;
+  align-items: center;
+}
+
+.popup-content {
+  max-width: 90%;
+  max-height: 90%;
+  border-radius: 5px;
+  box-shadow: 0 0 20px rgba(255,255,255,0.2);
+}
+
+.close-btn {
+  position: absolute;
+  top: 20px;
+  right: 35px;
+  color: #fff;
+  font-size: 40px;
+  font-weight: bold;
+  cursor: pointer;
+}
+

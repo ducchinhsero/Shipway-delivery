@@ -1,0 +1,15 @@
+:root {
+  --color-primary: #f97316;
+  --color-primary-dark: #d9480f;
+  --color-secondary: #0b3cc1;
+  --color-bg-main: #ffffff;
+  
+  --h1-font-family: "SF Pro", Inter, Helvetica, Arial, sans-serif;
+  
+  /* SPACING */
+  --space-md: 16px;
+  --space-lg: 24px;
+  
+  /* BORDER RADIUS */
+  --radius-lg: 20px;
+}

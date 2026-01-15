@@ -1,0 +1,220 @@
+/* =========================================================
+   LOGO
+========================================================= */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-weight: 700;
+  font-size: clamp(14px, 3vw, 20px);
+  color: var(--color-primary);
+}
+
+.logo img {
+  width: clamp(50px, 10vw, 70px);
+  height: clamp(50px, 10vw, 70px);
+}
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+.main-nav ul {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.main-nav a {
+  font-size: clamp(14px, 2vw, 24px);
+  font-weight: 500;
+  color: var(--color-text);
+  padding: 8px 4px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.main-nav a.active::after,
+.main-nav a:hover::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -6px;
+  width: 100%;
+  height: 2px;
+  background: var(--color-primary);
+}
+
+@media (max-width: 768px) {
+  .main-nav ul {
+    gap: var(--space-sm);
+  }
+
+  .main-nav a {
+    font-size: 14px;
+    padding: 6px 2px;
+  }
+}
+
+/* =========================================================
+   BUTTONS
+========================================================= */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: #ffffff;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  transition: background 0.2s ease;
+}
+
+
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 24px;
+  font-size: var(--font-base);
+  font-weight: 600;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-md);
+  transition: all 0.2s ease;
+}
+
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+/* =========================================================
+   SECTION TITLE
+========================================================= */
+/* .section-title {
+  font-size: var(--font-xl);
+  font-weight: 700;
+} */
+
+/* =========================================================
+   FEATURE LIST
+========================================================= */
+.features-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: clamp(12px, 3vw, 20px);
+}
+
+.feature-item img {
+  width: clamp(40px, 8vw, 60px);
+  height: clamp(40px, 8vw, 60px);
+  margin-top: 10px;
+  flex-shrink: 0;
+}
+
+.feature-item h3 {
+  font-size: clamp(18px, 4vw, 28px);
+  font-weight: 700;
+  margin-bottom: 6px;
+  color: #0b3cc1;
+}
+
+.feature-item p {
+  font-size: clamp(14px, 3vw, 16px);
+  align-items: flex-start;
+  gap: var(--space-md);
+}
+
+/* .feature-item img {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+}
+
+.feature-item h3 {
+  font-size: 28px;
+  font-weight: 600;
+  margin-bottom: 4px;
+} */
+
+/* .feature-item p {
+  font-size: 24px;
+  font-weight: 400;
+  color: var(--color-muted);
+  max-width: 520px;
+} */
+
+/* =========================================================
+   VALUE / CARD
+========================================================= */
+.values-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-lg);
+}
+
+.value-item {
+  background: var(--color-bg-light);
+  padding: var(--space-lg);
+  border-radius: var(--radius-md);
+  text-align: center;
+}
+
+.value-item img {
+  width: 56px;
+  margin: 0 auto var(--space-sm);
+}
+
+.value-item h3 {
+  font-size: var(--font-lg);
+  font-weight: 600;
+  margin-bottom: var(--space-xs);
+}
+
+.value-item p {
+  font-size: var(--font-base);
+  color: var(--color-muted);
+}
+
+/* =========================================================
+   HERO BUTTON GROUP
+========================================================= */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  margin-top: var(--space-lg);
+}
+
+/* =========================================================
+   RESPONSIVE
+========================================================= */
+@media (max-width: 1024px) {
+  .values-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .main-nav ul {
+    gap: var(--space-md);
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .feature-item {
+    align-items: flex-start;
+  }
+}

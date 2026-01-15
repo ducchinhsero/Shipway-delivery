@@ -1,0 +1,75 @@
+# =====================
+# Backend Python
+# =====================
+
+# Python cache
+backend-python/__pycache__/
+backend-python/**/__pycache__/
+backend-python/*.py[cod]
+backend-python/**/*.py[cod]
+
+# Virtual Environment
+backend-python/.venv/
+backend-python/venv/
+backend-python/env/
+
+# Environment Variables
+backend-python/.env
+.env
+.env.local
+
+# =====================
+# Frontend
+# =====================
+
+# Dependencies (if using npm in future)
+frontend/node_modules/
+
+# =====================
+# IDE & Editors
+# =====================
+
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# =====================
+# OS
+# =====================
+
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# =====================
+# Logs
+# =====================
+
+*.log
+logs/
+
+# =====================
+# Database
+# =====================
+
+*.db
+*.sqlite
+*.sqlite3
+
+# =====================
+# Temporary files
+# =====================
+
+*.tmp
+*.temp
+~*
+
+# =====================
+# Build outputs
+# =====================
+
+dist/
+build/
+*.egg-info/

@@ -1,0 +1,374 @@
+/* =====================================================
+   MOBILE RESPONSIVE (Max-width: 768px)
+===================================================== */
+@media (max-width: 768px) {
+  
+  /* RESET & BASE */
+  .desktop {
+    width: 100%;
+    min-width: 0 !important;
+    overflow-x: hidden;
+  }
+
+  body {
+    overflow-x: hidden;
+  }
+
+  /* =====================================================
+     HEADER: GRID 2x2 + VIỀN BAO QUANH
+  ===================================================== */
+  .header-section {
+    width: 100%;
+    margin-top: 0;
+    
+    /* Viền bao quanh toàn bộ Header */
+    border: 4px solid #f97316 !important; 
+    border-radius:  20px;
+    
+    /* Giữ màu nền cũ */
+    background-color: #fff0e6 !important;
+    
+    padding: 16px 12px;
+    box-sizing: border-box;
+  }
+
+  .header {
+    display: grid !important;
+    /* Cột 1 co dãn, Cột 2 tự động theo nút */
+    grid-template-columns: 1fr auto; 
+    /* Định nghĩa khu vực hiển thị */
+    grid-template-areas: 
+      "logo logout"
+      "user wallet";
+    gap: 16px 10px; 
+    align-items: center;
+    width: 100%;
+  }
+
+  /* Vị trí các thành phần */
+  .logoholder {
+    grid-area: logo;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-logout {
+    grid-area: logout;
+    justify-self: stretch;
+    min-width: 100px;
+    height: 38px !important;
+    padding: 0 15px !important;
+    font-size: 13px !important;
+    border: 3px solid #f97316 !important;
+    background-color: #fff0e6 !important;
+    color: #000 !important;
+    border-radius: 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+  }
+
+  .user-info {
+    grid-area: user;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .btn-wallet {
+    grid-area: wallet;
+    justify-self: stretch;
+    min-width: 100px;
+    height: 38px !important;
+    padding: 0 15px !important;
+    font-size: 13px !important;
+    border: 3px solid #10b981 !important; 
+    background-color: #d1fae5 !important;
+    color: #064e3b !important;
+    border-radius: 12px !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-left: 0 !important;
+  }
+
+  /* --- HIỆU ỨNG HOVER (Chạm/Di chuột) --- */
+  .btn-logout:hover {
+    background-color: #f97316 !important; 
+    color: #ffffff !important;           
+  }
+
+  .btn-wallet:hover {
+    background-color: #10b981 !important; 
+    color: #ffffff !important;           
+  }
+
+  /* Điều chỉnh kích thước text/icon header */
+  .logoicon { width: 40px !important; height: 40px !important; }
+  .text-wrapper-14 { font-size: 22px !important; color: #000; font-weight: 700; }
+  .user-avatar { width: 32px !important; height: 32px !important; border-radius: 50%; }
+  .user-value { font-size: 14px !important; color: #000; font-weight: 700; }
+
+  /* =====================================================
+     MAIN CONTENT & FORM
+  ===================================================== */
+  .main-content {
+    margin-top: 20px;
+    padding: 0 16px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .text-wrapper-8 {
+    font-size: 28px !important;
+    margin-bottom: 24px;
+    text-align: center;
+    font-weight: 700;
+  }
+
+  .form-group label,
+  .size-type-label {
+    font-size: 16px !important;
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+
+  input[type="text"],
+  .display-box,
+  .rectangle-3 {
+    height: 52px !important;
+    font-size: 16px !important;
+    border-radius: 15px !important;
+    border-width: 3px !important;
+  }
+
+  /* Kích thước (Dài; Rộng; Cao) */
+  .size-inputs {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+  }
+  .size-inputs input {
+    flex: 1;
+    min-width: 0;
+    text-align: center;
+    padding: 0 !important;
+  }
+  .separator { font-size: 20px !important; }
+
+  /* Giá Min - Max */
+  .price-range-box {
+    display: flex;
+    gap: 10px;
+  }
+  .price-range-box .display-box { flex: 1; }
+
+  /* =====================================================
+     PREVIEW ẢNH + NÚT XÓA (X)
+  ===================================================== */
+  .image-preview {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 15px;
+  }
+
+  /* Container cho mỗi tấm ảnh */
+  .preview-item {
+    position: relative;
+    display: inline-block;
+  }
+
+  .preview-item img {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 2px solid #f97316;
+  }
+
+  .btn-remove-img {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    width: 22px;
+    height: 22px;
+    background-color: #ff4d4f;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: bold;
+    border: 2px solid #fff;
+    cursor: pointer;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+    z-index: 10;
+  }
+
+  /* =====================================================
+     NÚT HÀNH ĐỘNG (QUAY LẠI & XÁC NHẬN)
+  ===================================================== */
+  .form-actions {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 12px;
+    margin-top: 12px !important;
+    width: 100%;
+  }
+
+  .rectangle-10,
+  .rectangle-11 {
+    flex: 1 !important;
+    height: 54px !important;
+    font-size: 16px !important;
+    font-weight: 700 !important;
+    border-radius: 15px !important;
+    border: 3px solid #f97316 !important;
+    background-color: #f0a7734c !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    padding: 0 !important;
+    white-space: nowrap;
+  }
+
+  .rectangle-11 {
+    background-color: #f97316 !important;
+    color: #ffffff !important;
+  }
+
+  /* =====================================================
+     FOOTER
+  ===================================================== */
+  .footer {
+    margin-top: 50px;
+    width: 100%;
+  }
+
+  .rectangle-12 {
+    height: 70px !important;
+    background-color: #13224a;
+  }
+
+  .text-wrapper-13 {
+    font-size: 11px !important;
+    color: #b6b5b5;
+    text-align: center;
+    margin-top: -50px;
+    padding: 0 10px;
+  }
+
+  /* Hover cho nút trên mobile */
+  .button:hover {
+    background-color: var(--primary) !important;
+    color: #ffffff !important;
+  }
+  
+  .btn-wallet:hover {
+    background-color: #10b981 !important;
+    color: #ffffff !important;
+  }
+
+  /* =====================================================
+     ẢNH & NÚT XÓA TRÊN MOBILE
+  ===================================================== */
+  .image-preview img {
+    width: 100px; 
+    height: 100px;
+  }
+
+  .preview-item .btn-remove-img {
+    width: 24px;
+    height: 24px;
+    top: -8px;
+    right: -8px;
+    font-size: 14px;
+  }
+
+  /* =====================================================
+     ACTION BUTTONS (CENTER TEXT MOBILE)
+  ===================================================== */
+  .rectangle-10,
+  .rectangle-11 {
+    flex: 1 !important;
+    height: 54px !important;
+    font-size: 16px !important;
+    
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    text-align: center;
+    padding: 0 !important; 
+  }
+}
+
+@media (max-width: 360px) {
+  .text-wrapper-14 { font-size: 18px !important; }
+  .header { gap: 10px 5px; }
+  .btn-wallet, .btn-logout { font-size: 11px !important; padding: 0 8px !important; }
+}
+
+/* =====================================================
+   MOBILE ERROR STATE – CHỈ TEXT INPUT
+===================================================== */
+
+.input-error {
+  border-color: red !important;
+}
+
+
+.input-error .rectangle-3,
+.input-error .image-preview-wrapper,
+.input-error .image-preview,
+.input-error .image-counter {
+  border: none !important;
+}
+
+.error-message {
+  color: red;
+  font-size: 14px;
+  font-weight: 600;
+  margin-top: 6px;
+}
+
+@media (max-width: 768px) {
+
+  /* =====================================================
+     IMAGE COUNTER – CHỈ CHIẾM CHỖ KHI HIỂN THỊ
+  ===================================================== */
+
+  .image-counter {
+    margin-bottom: 0;
+    line-height: 1;
+  }
+
+  .image-counter[style*="display: none"] {
+    margin: 0 !important;
+    padding: 0 !important;
+    height: 0 !important;
+    overflow: hidden;
+  }
+
+  /* =====================================================
+     IMAGE PREVIEW WRAPPER
+  ===================================================== */
+
+  .image-preview-wrapper {
+    margin-top: 6px !important;
+    margin-bottom: 6px !important;
+  }
+
+
+  .image-preview:empty {
+    display: none;
+  }
+}
+

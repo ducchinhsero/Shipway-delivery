@@ -1,0 +1,284 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipway - Ví điện tử</title>
+  <link rel="stylesheet" href="../shared/header.css">
+  <link rel="stylesheet" href="css/wallet.css">
+</head>
+
+<body data-page="wallet-topup" data-protected data-required-role="user">
+<div id="app-header"></div>
+<div class="page">
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <a href="index.html" class="back-home-btn" title="Quay về ví">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </a>
+      <div class="page-header-content">
+        <h1 class="page-title">Nạp tiền và Rút tiền</h1>
+        <p class="page-desc">
+          Nạp tiền và Rút tiền<br>
+          QR ngân hàng hoặc Visa
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== TAB CHỌN CHỨC NĂNG ===== -->
+  <div class="tab-container">
+    <button type="button" class="tab active" data-topup-tab="topup">Nạp tiền</button>
+    <button type="button" class="tab" data-topup-tab="withdraw">Rút tiền</button>
+  </div>
+
+  <!-- ===== NẠP TIỀN ===== -->
+  <div class="card" id="topupSection">
+    <h2>Nạp tiền vào ví</h2>
+    
+    <!-- ===== METHOD SELECT ===== -->
+    <div class="method-container">
+      <div class="method-tabs">
+        <button type="button" class="method-tab active" data-topup-method="qr">QR Ngân hàng</button>
+        <button type="button" class="method-tab" data-topup-method="visa">Visa</button>
+      </div>
+
+      <!-- ===== QR PAYMENT ===== -->
+      <div id="qrSection">
+        <div class="qr-container">
+          <div class="qr-code" id="qrCode">
+            <img src="img/qr.jpg" alt="QR Code" class="qr-image">
+          </div>
+          <p class="qr-instruction">Quét mã QR để nạp tiền vào ví</p>
+
+          <div class="bank-info">
+
+            <div class="info-row">
+              <span class="info-label">Số tài khoản:</span>
+              <span class="info-value">9999999</span>
+              <button type="button" class="copy-btn" data-copy-value="9999999">Sao chép</button>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Ngân hàng:</span>
+              <span class="info-value">VietinBank</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Tên tài khoản:</span>
+              <span class="info-value">CÔNG TY SHIPWAY</span>
+            </div>
+            <div class="info-row">
+              <span class="info-label">Nội dung CK:</span>
+              <span class="info-value" id="transferContent">ID123456_09012025</span>
+              <button type="button" class="copy-btn" data-copy-value="ID123456_09012025">Sao chép</button>
+            </div>
+          </div>
+
+          <div class="warning-note">
+            <strong>Lưu ý quan trọng:</strong> Vui lòng ghi đúng nội dung chuyển khoản để giao dịch được xử lý nhanh chóng. Nội dung: <strong>ID user + thời gian</strong> (ví dụ: ID123456_09012025)
+          </div>
+        </div>
+      </div>
+
+      <!-- ===== VISA PAYMENT ===== -->
+      <div id="visaSection" class="hidden">
+        <div class="visa-form">
+          <label>Số thẻ</label>
+          <input type="text" placeholder="1234 5678 9012 3456" id="cardNumber">
+          
+          <label>Tên chủ thẻ</label>
+          <input type="text" placeholder="NGUYEN VAN A" id="cardName">
+          
+          <div class="visa-row">
+            <div>
+              <label>MM/YY</label>
+              <input type="text" placeholder="07/26" id="cardExpiry">
+            </div>
+            <div>
+              <label>CVV</label>
+              <input type="password" placeholder="123" id="cardCvv">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ===== AMOUNT ===== -->
+    <!-- ===== AMOUNT ===== -->
+<div class="amount-input">
+  <label>Số tiền nạp (₫)</label>
+  <input type="number" id="topupAmount" value="50000" min="10000" step="1000">
+  
+  <div class="amount-presets">
+    <button type="button" class="amount-preset" data-amount-preset="50000">50,000₫</button>
+    <button type="button" class="amount-preset" data-amount-preset="100000">100,000₫</button>
+    <button type="button" class="amount-preset" data-amount-preset="200000">200,000₫</button>
+    <button type="button" class="amount-preset" data-amount-preset="500000">500,000₫</button>
+  </div>
+</div>
+
+<button type="button" class="btn-primary" data-action="confirm-topup" style="margin-top: 30px;">Xác nhận nạp tiền</button>
+  </div>
+
+<!-- ===== RÚT TIỀN ===== -->
+<div class="card hidden" id="withdrawSection">
+  <h2>Rút tiền về tài khoản</h2>
+
+  <!-- ===== BANK INFO (DISPLAY) ===== -->
+  <div class="bank-info" id="bankInfoDisplay">
+    <div class="info-row">
+      <span class="info-label">Số tài khoản:</span>
+      <span class="info-value" id="userAccount">Chưa cập nhật</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Ngân hàng:</span>
+      <span class="info-value" id="userBank">Chưa cập nhật</span>
+    </div>
+    <div class="info-row">
+      <span class="info-label">Chủ tài khoản:</span>
+      <span class="info-value" id="userName">Chưa cập nhật</span>
+    </div>
+
+    <button type="button" class="btn-outline" data-action="edit-bank-info">
+      Cập nhật thông tin ngân hàng
+    </button>
+  </div>
+
+  <!-- ===== BANK INFO FORM ===== -->
+  <div class="bank-info-form hidden" id="bankInfoForm">
+    <div class="form-group">
+      <label>Số tài khoản</label>
+      <input type="text" id="inputAccount" placeholder="Nhập số tài khoản">
+    </div>
+
+    <div class="form-group">
+      <label>Ngân hàng</label>
+      <input type="text" id="inputBank" placeholder="VD: VietinBank">
+    </div>
+
+    <div class="form-group">
+      <label>Chủ tài khoản</label>
+      <input type="text" id="inputName" placeholder="VD: NGUYEN VAN A">
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn-secondary" data-action="save-bank-info">
+        Lưu thông tin
+      </button>
+      <button type="button" class="btn-text" data-action="cancel-bank-info">
+        Hủy
+      </button>
+    </div>
+  </div>
+
+  <!-- ===== WITHDRAW AMOUNT ===== -->
+  <div class="amount-input">
+    <label>Số tiền rút (₫)</label>
+    <input type="number" id="withdrawAmount" value="50000" min="50000" step="1000">
+
+    <div class="amount-presets">
+      <button type="button" class="amount-preset" data-withdraw-preset="50000">50,000₫</button>
+      <button type="button" class="amount-preset" data-withdraw-preset="100000">100,000₫</button>
+      <button type="button" class="amount-preset" data-withdraw-preset="200000">200,000₫</button>
+      <button type="button" class="amount-preset" data-withdraw-preset="500000">500,000₫</button>
+    </div>
+
+    <p class="available-balance">
+      Số dư khả dụng: <span id="availableBalance">0₫</span>
+    </p>
+  </div>
+
+  <button type="button" class="btn-secondary" data-action="confirm-withdraw">
+    Xác nhận rút tiền
+  </button>
+</div>
+
+
+  <!-- ===== STATUS ===== -->
+  <div class="card hidden" id="paymentStatus">
+    <p id="statusMessage">Đang xử lý giao dịch...</p>
+    <div class="loading-spinner"></div>
+  </div>
+
+  <!-- ===== SUCCESS ===== -->
+  <div class="card hidden" id="successStatus">
+    <div class="success-icon">✓</div>
+    <p id="successMessage">Giao dịch thành công!</p>
+    <button type="button" class="btn-primary" data-action="go-wallet">Quay về ví</button>
+  </div>
+
+</div>
+
+<script src="js/history.js"></script>
+<script src="js/qr-payment.js"></script>
+<script src="js/wallet.js"></script>
+<!-- ===== QR POPUP ===== -->
+<div class="qr-popup hidden" id="qrPopup">
+  <div class="qr-overlay" data-action="close-qr"></div>
+
+  <div class="qr-modal">
+    <h3>Thanh toán bằng QR Ngân hàng</h3>
+
+    <div class="qr-container">
+      <img src="img/qr.jpg" alt="QR Code" class="qr-image">
+      <p class="qr-instruction">Quét mã QR để thanh toán</p>
+    </div>
+
+    <div class="bank-info">
+      <div class="info-row">
+        <span class="info-label">Số tài khoản:</span>
+        <span class="info-value">9999999</span>
+        <button class="copy-btn" data-copy-value="9999999">Sao chép</button>
+      </div>
+
+      <div class="info-row">
+        <span class="info-label">Ngân hàng:</span>
+        <span class="info-value">VietinBank</span>
+      </div>
+
+      <div class="info-row">
+        <span class="info-label">Tên TK:</span>
+        <span class="info-value">CÔNG TY SHIPWAY</span>
+      </div>
+
+      <div class="info-row">
+        <span class="info-label">Nội dung CK:</span>
+        <span class="info-value" id="transferContent">ID123456_09012025</span>
+        <button class="copy-btn" data-copy-value="ID123456_09012025">Sao chép</button>
+      </div>
+    </div>
+
+    <div class="warning-note">
+      ⚠️ Vui lòng ghi đúng <strong>Nội dung chuyển khoản</strong> để hệ thống xử lý tự động
+    </div>
+
+    <div class="qr-actions">
+      <button class="btn-primary" data-action="confirm-paid">
+        Tôi đã thanh toán
+      </button>
+      <button class="btn-text" data-action="close-qr">
+        Đóng
+      </button>
+    </div>
+  </div>
+</div>
+
+<div id="app-footer"></div>
+
+<!-- Scripts -->
+<script src="../shared/header.js"></script>
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    if (window.initWallet) {
+      window.initWallet();
+    }
+  });
+</script>
+  <!-- Auth Protection -->
+  <script type="module" src="../../shared/auth-guard.js"></script>
+</body>
+</html>

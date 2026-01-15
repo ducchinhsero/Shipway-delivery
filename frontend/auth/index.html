@@ -1,0 +1,232 @@
+﻿<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipway - Đăng nhập / Đăng ký</title>
+  <link rel="stylesheet" href="auth.css">
+</head>
+
+<body>
+<div class="page">
+
+  <!-- ===== HEADER ===== -->
+  <div class="header">
+    <img src="img/logo.png" alt="Shipway" class="logo-img">
+    <p class="desc" id="headerDesc">
+      Đăng nhập tài khoản Shipway<br>
+      để sử dụng các dịch vụ vận chuyển
+    </p>
+  </div>
+
+  <!-- ===== OTP NOTIFICATION ===== -->
+  <div id="otpNotification" class="otp-notification hidden">
+    <div class="otp-notification-content">
+      <h3>📱 Mã OTP đã được gửi</h3>
+      <p>Số điện thoại: <strong id="otpPhoneDisplay"></strong></p>
+      <p>Mã OTP: <strong id="otpCodeDisplay" class="otp-code"></strong></p>
+      <p class="otp-note">(Mã này chỉ hiển thị để test, kiểm tra Console để xem chi tiết)</p>
+      <button onclick="closeOtpNotification()" class="btn-primary">Đã ghi nhận</button>
+    </div>
+  </div>
+
+  <!-- ===== LOGIN VIEW ===== -->
+  <div class="card" id="loginView">
+    <a href="../onboarding/index.html" class="back-home-btn" title="Quay về trang chủ">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+  </a>
+    <h2>Đăng nhập</h2>
+
+    <form id="loginForm" novalidate>
+      <div class="input-group phone-group">
+        <select id="loginCountry" class="country-select">
+          <option value="+84">🇻🇳 +84</option>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+82">🇰🇷 +82</option>
+          <option value="+81">🇯🇵 +81</option>
+        </select>
+        <input id="loginPhone" type="tel" placeholder="Số điện thoại" required>
+      </div>
+
+      <div class="input-group">
+        <input id="loginPassword" type="password" placeholder="Mật khẩu" required>
+      </div>
+
+      <button type="submit" class="btn-primary">Đăng nhập</button>
+
+      <div id="loginMessage" class="form-message"></div>
+    </form>
+
+    <a href="#" id="forgotLink" class="link">Quên mật khẩu?</a>
+
+    <div class="divider"></div>
+
+    <a href="#" class="link strong" onclick="window.showRegister()">
+      Chưa có tài khoản? Đăng ký
+    </a>
+  </div>
+
+  <!-- ===== REGISTER VIEW ===== -->
+  <div class="card hidden" id="registerView">
+     <a href="../onboarding/index.html" class="back-home-btn" title="Quay về trang chủ">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <line x1="19" y1="12" x2="5" y2="12"></line>
+      <polyline points="12 19 5 12 12 5"></polyline>
+    </svg>
+  </a>
+    <h2>Đăng ký tài khoản</h2>
+
+    <!-- Role Selector -->
+    <div class="role-selector">
+      <label class="role-option">
+        <input type="radio" name="role" value="user" checked style="display: none;">
+        <span class="role-label">Đối tác vận chuyển</span>
+      </label>
+      <label class="role-option">
+        <input type="radio" name="role" value="driver" style="display: none;">
+        <span class="role-label">Đăng ký tài xế</span>
+      </label>
+    </div>
+
+    <form id="registerForm" novalidate>
+      <!-- Phone Input -->
+      <div class="input-group phone-group">
+        <select id="regCountry" class="country-select">
+          <option value="+84">🇻🇳 +84</option>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+82">🇰🇷 +82</option>
+          <option value="+81">🇯🇵 +81</option>
+        </select>
+        <input id="regPhone" type="tel" placeholder="Số điện thoại" required>
+      </div>
+
+      <div id="regPhoneMessage" class="form-message"></div>
+
+      <!-- Send OTP Button -->
+      <button type="button" class="btn-primary" id="sendOtpBtn">
+        Gửi mã OTP
+      </button>
+
+      <!-- OTP Input Section -->
+      <div id="otpSection" class="hidden">
+        <div class="input-group">
+          <input id="regOtpInput" type="text" placeholder="Nhập mã OTP" maxlength="6" pattern="\d{6}" required>
+        </div>
+      </div>
+
+      <!-- Name Input (appears after OTP section) -->
+      <div id="nameSection" class="hidden">
+        <div class="input-group">
+          <input id="regName" type="text" placeholder="Họ và tên" required>
+        </div>
+      </div>
+
+      <!-- Password Input (appears after OTP section) -->
+      <div id="passwordSection" class="hidden">
+        <div class="input-group">
+          <input id="regPassword" type="password" placeholder="Mật khẩu" required>
+        </div>
+      </div>
+
+      <!-- Submit Button (appears after OTP section) -->
+      <button type="submit" class="btn-primary hidden" id="registerSubmitBtn">
+        Đăng ký
+      </button>
+
+      <div id="registerMessage" class="form-message"></div>
+    </form>
+
+    <a href="#" class="link strong" onclick="window.showLogin()">
+      Quay lại đăng nhập
+    </a>
+  </div>
+
+  <!-- ===== RESET PASSWORD VIEW ===== -->
+  <div class="card hidden" id="resetView">
+    <h2>Đặt lại mật khẩu</h2>
+
+    <form id="resetForm" novalidate>
+      <!-- Phone Input -->
+      <div class="input-group phone-group">
+        <select id="resetCountry" class="country-select">
+          <option value="+84">🇻🇳 +84</option>
+          <option value="+1">🇺🇸 +1</option>
+          <option value="+82">🇰🇷 +82</option>
+          <option value="+81">🇯🇵 +81</option>
+        </select>
+        <input id="resetPhone" type="tel" placeholder="Số điện thoại" required>
+      </div>
+
+      <!-- Send OTP Button -->
+      <button type="button" class="btn-primary" id="resetSendOtpBtn">
+        Gửi mã OTP
+      </button>
+
+      <!-- OTP Input Section -->
+      <div id="resetOtpSection" class="hidden">
+        <div class="input-group">
+          <input id="resetOtpInput" type="text" placeholder="Nhập mã OTP" maxlength="6" pattern="\d{6}" required>
+        </div>
+      </div>
+
+      <!-- New Password Section -->
+      <div id="newPasswordSection" class="hidden">
+        <div class="input-group">
+          <input id="resetPassword" type="password" placeholder="Mật khẩu mới" required>
+        </div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn-primary hidden" id="resetSubmitBtn">
+        Đặt lại mật khẩu
+      </button>
+
+      <div id="resetMessage" class="form-message"></div>
+    </form>
+
+    <a href="#" class="link strong" onclick="window.showLogin()">
+      Quay lại đăng nhập
+    </a>
+  </div>
+
+</div>
+
+<!-- Script -->
+<script type="module">
+  import { initAuthService } from './auth.controller.js';
+  import { eventBus, AUTH_EVENTS } from '../shared/event-bus.js';
+
+  // Initialize Auth Service
+  document.addEventListener('DOMContentLoaded', () => {
+    initAuthService();
+  });
+
+  // Function to show OTP notification
+  window.showOtpNotification = function(phone, otp) {
+    const notification = document.getElementById('otpNotification');
+    const phoneDisplay = document.getElementById('otpPhoneDisplay');
+    const codeDisplay = document.getElementById('otpCodeDisplay');
+
+    if (notification && phoneDisplay && codeDisplay) {
+      phoneDisplay.textContent = phone;
+      codeDisplay.textContent = otp;
+      notification.classList.remove('hidden');
+    }
+  };
+
+  // Function to close OTP notification
+  window.closeOtpNotification = function() {
+    const notification = document.getElementById('otpNotification');
+    if (notification) {
+      notification.classList.add('hidden');
+    }
+  };
+  window.addEventListener('DOMContentLoaded', () => {
+    if (location.hash === '#register') showRegister();
+  });
+</script>
+</body>
+</html>

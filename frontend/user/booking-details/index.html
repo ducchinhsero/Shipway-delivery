@@ -1,0 +1,115 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta charset="utf-8" />
+        <title id="web-title"></title>
+        <link rel="stylesheet" href="./css/style.css" />
+        <link rel="stylesheet" href="./css/layout.css" />
+        <link rel="stylesheet" href="./css/responsive.css" />
+    </head>
+    <body data-protected data-required-role="user">
+        <div class="header-section" id="top" style="cursor: pointer;">
+            <header class="main-header">
+                <div class="header-left">
+                    <div class="logo">
+                    <img 
+                        src="./img/logoshipway.png" 
+                        alt="Shipway Logo" 
+                        class="logo-img"
+                    />
+                    <span class="brand-name" id="brand"></span>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button id="walletBtn" class="btn-wallet"></button>
+
+                    <div class="user-profile">
+                        <div class="user-avatar" id="user-avatar"></div>
+                        <span class="user-name" id="user-name"></span>
+                    </div>
+                    
+                    <button class="btn-logout" id="logoutBtn"></button>
+                </div>
+            </header>
+        </div>    
+
+        <div class="page-header">
+            <div class="page-header-left">
+                <div class="page-title" id="page-title"></div>
+                <div class="status"><div class="btn-text" id="order-status"></div></div>
+            </div>
+
+            <div class="page-header-right">
+                <button class="btn-back" id="backBtn"></button>
+            </div>
+        </div>
+
+        <div class="booking-details">
+            <div class="details">
+                <div class="detail-row">
+                    <div class="label" id="label-order-id"></div>
+                    <div class="value" id="order-id"></div>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-pickup"></div>
+                    <p class="value" id="pickup-location"></p>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-delivery"></div>
+                    <p class="value" id="delivery-location"></p>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-type"></div>
+                    <div class="value" id="type"></div>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-size"></div>
+                    <p class="value" id="size"></p>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-weight"></div>
+                    <p class="value" id="weight"></p>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-driver-name"></div>
+                    <div class="value" id="driver-name"></div>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-driver-phone"></div>
+                    <div class="value" id="driver-phone"></div>
+                </div>
+                    <div class="detail-row">
+                    <div class="label" id="label-cost"></div>
+                    <p class="value" id="cost"></p>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-date"></div>
+                    <div class="value" id="date-create"></div>
+                </div>
+                <div class="detail-row">
+                    <div class="label" id="label-image"></div>
+                    <div class="image-list">
+                        <img class="image-item clickable-img" id="image-container-1" src="" />
+                        <img class="image-item clickable-img" id="image-container-2" src="" />
+                        <img class="image-item clickable-img" id="image-container-3" src="" />
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="main-footer">
+            <div id="footer"></div>
+        </footer>
+
+        <div id="imagePopup" class="popup-overlay">
+            <span class="close-btn" id="closePopupBtn">&times;</span>
+            <img class="popup-content" id="imgFull">
+        </div>
+
+        <script type="module" src="./js/main.js"></script>
+
+      <!-- Auth Protection -->
+  <script type="module" src="../../shared/auth-guard.js"></script>
+</body>
+</html>

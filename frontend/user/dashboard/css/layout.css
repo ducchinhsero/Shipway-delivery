@@ -1,0 +1,254 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)),
+        url('../images/bg.avif');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* =========================================
+   HEADER STYLES
+   ========================================= */
+.main-header {
+    background-color: #FFF3E0;
+    /* Màu be (giữ nguyên để không bị trong suốt) */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 32px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    position: relative;
+    z-index: 10;
+    
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.logo-img {
+    height: 36px;
+    width: auto;
+}
+
+.brand-name {
+    font-size: 28px;
+    font-weight: 700;
+    color: #333;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* User Profile & Info */
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.user-profile {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 6px 12px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 24px;
+    transition: all 0.3s;
+}
+
+.user-profile:hover {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+.user-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+    text-transform: uppercase;
+    flex-shrink: 0;
+}
+
+.user-name {
+    font-size: 14px;
+    color: #333;
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.btn-logout {
+    background: #FF8C00;
+    color: white;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-logout:hover {
+    background: #ff7a00;
+}
+
+/* =========================================
+   MAIN CONTENT (CONTAINER)
+   ========================================= */
+.container {
+    flex: 1;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 32px 40px;
+    background-color: transparent;
+}
+
+
+.page-header {
+    margin-bottom: 24px;
+}
+
+.page-title {
+    font-size: 32px;
+    font-weight: 700;
+    color: #4169E1;
+    margin: 0;
+    text-shadow: 2px 2px 0 #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff, 1px 1px 0 #fff;
+}
+
+.toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.filters {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.order-table {
+    background-color: #ffffff;
+    padding: 24px;
+    border-radius: 16px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+
+.main-footer {
+    background: #000000;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    margin-top: auto;
+}
+
+.main-footer p {
+    margin: 0;
+    font-size: 14px;
+}
+
+@media (max-width: 768px) {
+    .main-header {
+        padding: 10px 16px;
+        flex-wrap: wrap;
+        gap: 10px;
+    }
+
+    .brand-name {
+        font-size: 20px;
+    }
+
+    .logo-img {
+        height: 28px;
+    }
+
+    .header-right {
+        width: 100%;
+        justify-content: space-between;
+        gap: 8px;
+    }
+
+    .container {
+        padding: 16px;
+    }
+
+    .order-table {
+        padding: 12px;
+        
+    }
+
+    .page-title {
+        font-size: 24px;
+    }
+
+    .toolbar {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .filters {
+        flex-wrap: wrap;
+        gap: 8px;
+        justify-content: center;
+    }
+
+    .filter-btn {
+        flex: 1;
+        min-width: calc(50% - 4px);
+    }
+
+    .btn-create-order {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .user-name {
+        display: none;
+    }
+
+    .btn-logout {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+}

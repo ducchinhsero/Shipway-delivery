@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Shipway - Tạo đơn</title>
+
+  <link rel="stylesheet" href="css/globals.css" />
+  <link rel="stylesheet" href="css/styleguide.css" />
+  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="css/mobile.css" />
+</head>
+
+<body data-protected data-required-role="user">
+  <div class="desktop">
+
+    <header class="header-section">
+      <div class="header">
+        <div class="logoholder">
+          <img class="logoicon" src="assets/logoshipway.png" alt="Shipway" />
+          <div class="text-wrapper-14">Shipway</div>
+        </div>
+
+        <div class="user-info">
+          <img class="user-avatar" src="assets/usericon.png" alt="User" />
+          <div class="username-wrapper">
+            <span class="user-value">Nguyễn Văn A</span>
+          </div>
+        </div>
+
+        <button class="button btn-wallet">Ví tiền</button>
+        <button class="button btn-logout">Đăng xuất</button>
+      </div>
+    </header>
+
+    <main class="main-content">
+      <h1 class="text-wrapper-8">Tạo đơn</h1>
+
+      <form class="order-form" action="confirm.html" method="GET">
+
+        <div class="form-group">
+          <label>Điểm nhận hàng</label>
+          <input type="text" name="pickup_address" placeholder="Địa chỉ lấy hàng" data-required />
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label>Tên người gửi</label>
+            <input type="text" name="pickup_contact_name" placeholder="Tên người liên hệ" data-required />
+          </div>
+          <div class="form-group half">
+            <label>SĐT người gửi</label>
+            <input type="text" name="pickup_contact_phone" placeholder="0912345678" data-required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label>Vĩ độ (Latitude)</label>
+            <input type="text" name="pickup_lat" placeholder="10.7329269" data-required />
+          </div>
+          <div class="form-group half">
+            <label>Kinh độ (Longitude)</label>
+            <input type="text" name="pickup_lng" placeholder="106.7172715" data-required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Ghi chú điểm lấy hàng</label>
+          <input type="text" name="pickup_note" placeholder="Gọi trước khi đến (tùy chọn)" />
+        </div>
+
+        <div class="form-group">
+          <label>Điểm trả hàng</label>
+          <input type="text" name="dropoff_address" placeholder="Địa chỉ giao hàng" data-required/>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label>Tên người nhận</label>
+            <input type="text" name="dropoff_contact_name" placeholder="Tên người liên hệ" data-required />
+          </div>
+          <div class="form-group half">
+            <label>SĐT người nhận</label>
+            <input type="text" name="dropoff_contact_phone" placeholder="0987654321" data-required />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group half">
+            <label>Vĩ độ (Latitude)</label>
+            <input type="text" name="dropoff_lat" placeholder="10.8231271" data-required />
+          </div>
+          <div class="form-group half">
+            <label>Kinh độ (Longitude)</label>
+            <input type="text" name="dropoff_lng" placeholder="106.7574535" data-required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Ghi chú điểm giao hàng</label>
+          <input type="text" name="dropoff_note" placeholder="Giao tận tay (tùy chọn)" />
+        </div>
+        
+        <div class="form-group distance-display">
+          <label>Tổng quãng đường (Km)</label>
+          <div class="display-box" id="distanceValue">-  -  -</div>
+        </div>
+
+        <div class="form-group">
+          <label>Tên hàng hóa</label>
+          <input type="text" name="product_name" data-required />
+        </div>
+
+        <div class="form-group">
+          <label>Trọng lượng hàng hóa (Kg)</label>
+          <input type="text" name="weight" class="weight-input" placeholder="0" inputmode="decimal" data-required/>
+        </div>
+
+        <div class="form-group">
+          <label>Loại xe vận chuyển</label>
+          <select name="vehicle_type" data-required>
+            <option value="">Chọn loại xe</option>
+            <option value="bike">Xe máy (tối đa 30kg)</option>
+            <option value="car">Xe ô tô (tối đa 300kg)</option>
+            <option value="van">Xe van (tối đa 500kg)</option>
+            <option value="truck_500kg">Xe tải 500kg</option>
+            <option value="truck_1000kg">Xe tải 1 tấn</option>
+          </select>
+        </div>
+
+        <div class="size-type-row">
+          <span class="size-type-label">Kích thước (Cm):</span>
+        </div>
+
+        <div class="size-inputs">
+          <input type="text" name="length" class="size-input" placeholder="Dài" inputmode="decimal">
+          <span class="separator">;</span>
+          <input type="text" name="width" class="size-input" placeholder="Rộng" inputmode="decimal">
+          <span class="separator">;</span>
+          <input type="text" name="height" class="size-input" placeholder="Cao" inputmode="decimal">
+        </div>
+
+        <div class="form-group">
+          <label>Phí vận chuyển ước tính (VND)</label>
+          <div class="display-box" id="estimatedFee">Nhập đầy đủ thông tin để tính phí</div>
+        </div>
+
+        <div class="form-group">
+          <label>Tiền thu hộ - COD (VND)</label>
+          <input type="text" name="cod_amount" class="price-input" placeholder="0" />
+        </div>
+
+        <div class="form-group">
+          <label>Ghi chú đơn hàng</label>
+          <textarea name="note" rows="3" placeholder="Ghi chú thêm về đơn hàng (tùy chọn)"></textarea>
+        </div>
+
+        <div class="form-group">
+          <label>Ảnh hàng hóa</label>
+          <div class="file-upload-wrapper">
+            <input
+              type="file"
+              id="product-image"
+              class="file-input"
+              accept="image/*"
+              multiple
+            />
+            <label for="product-image" class="rectangle-3">Chọn ảnh</label>
+          </div>
+
+          <div class="image-preview-wrapper">
+            <div class="image-counter" id="imageCounter" style="display: none;">0/3</div>
+            <div class="image-preview" id="imagePreview"></div>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <a href="../dashboard/index.html" class="rectangle-10">
+            Quay lại
+          </a>
+          
+          <a href="../wallet/index.html" class="rectangle-10" id="confirmBtn">
+            Xác nhận
+          </a>
+        </div>
+
+      </form> </main>
+
+    <footer class="footer">
+      <div class="rectangle-12"></div>
+      <p class="text-wrapper-13">
+        © 2025 Công ty Cổ phần Shipway. All rights reserved.
+      </p>
+    </footer>
+  </div>
+  
+  <script src="js/main.js " defer></script>
+  <!-- Auth Protection -->
+  <script type="module" src="../../shared/auth-guard.js"></script>
+</body>
+</html>

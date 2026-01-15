@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Shipway</title>
+
+    <link rel="stylesheet" href="./css/layout.css" />
+    <link rel="stylesheet" href="./css/components.css" />
+    <link rel="stylesheet" href="./css/order.css" />
+</head>
+
+<body data-protected data-required-role="user">
+
+    <div id="header"></div>
+
+    <main class="container">
+        <div class="page-header">
+            <h1 class="page-title">Danh sách đơn hàng</h1>
+        </div>
+
+        <div class="toolbar">
+            <div class="filters">
+                <button class="filter-btn active" data-status="ALL">Tất cả</button>
+                <button class="filter-btn" data-status="FINDING_DRIVER">Tìm tài xế</button>
+                <button class="filter-btn" data-status="COMPLETED">Hoàn thành</button>
+                <button class="filter-btn" data-status="IN_TRANSIT">Đang vận chuyển</button>
+                <button class="filter-btn" data-status="CANCELLED">Đã hủy</button>
+            </div>
+
+            <button class="btn-create-order">+ Tạo đơn</button>
+        </div>
+
+        <div class="order-table">
+            <div class="order-table-header">
+                <div class="col-id">Mã</div>
+                <div class="col-date">Ngày đặt</div>
+                <div class="col-product">Tên hàng</div>
+                <div class="col-weight">Khối lượng</div>
+                <div class="col-price">Giá</div>
+                <div class="col-status">Trạng thái</div>
+                <div class="col-actions">Chi tiết</div>
+            </div>
+            <div id="orderList"></div>
+        </div>
+    </main>
+
+    <footer class="main-footer">
+        <p>© 2017 - 2026 - Công ty Cổ phần Shipway</p>
+    </footer>
+
+    <!-- Auth Protection (must load first) -->
+    <script type="module" src="../../shared/auth-guard.js"></script>
+    <!-- Page Logic -->
+    <script type="module" src="./js/pages/dashboard.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,170 @@
+/* Filter Buttons */
+.filter-btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    color: white;
+}
+
+.filter-btn[data-status="ALL"] {
+    background: #333333;
+}
+
+.filter-btn[data-status="FINDING_DRIVER"] {
+    background: #4CAF50;
+}
+
+.filter-btn[data-status="COMPLETED"] {
+    background: #4c70af;
+}
+.filter-btn[data-status="IN_TRANSIT"] {
+    background: #FF9800;
+}
+
+.filter-btn[data-status="CANCELLED"] {
+    background: #F44336;
+}
+
+.filter-btn:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+}
+
+.filter-btn.active {
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    transform: translateY(-2px);
+}
+
+/* Create Order Button */
+.btn-create-order {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s;
+    white-space: nowrap;
+}
+
+.btn-create-order:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Status Badges */
+.status-badge {
+    padding: 6px 14px;
+    border-radius: 16px;
+    font-size: 13px;
+    font-weight: 600;
+    color: white;
+    display: inline-block;
+    text-align: center;
+}
+
+.status-badge.FINDING_DRIVER {
+    background: #4CAF50;
+}
+
+.status-badge.IN_TRANSIT {
+    background: #FF9800;
+}
+
+.status-badge.CANCELLED {
+    background: #F44336;
+}
+
+.status-badge.COMPLETED {
+    background: #4c70af;
+}
+
+/* Wallet Button */
+.btn-wallet {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    padding: 8px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    white-space: nowrap;
+}
+
+.btn-wallet .btn-icon {
+    font-size: 16px;
+}
+
+.btn-wallet .btn-text {
+    display: inline;
+}
+
+.btn-wallet:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+    .filter-btn {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .btn-create-order {
+        padding: 10px 20px;
+        font-size: 14px;
+    }
+
+    .status-badge {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+
+    .btn-wallet {
+        padding: 6px 14px;
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-btn {
+        padding: 6px 12px;
+        font-size: 12px;
+    }
+
+    .btn-create-order {
+        padding: 8px 16px;
+        font-size: 13px;
+    }
+
+    .status-badge {
+        padding: 4px 10px;
+        font-size: 11px;
+    }
+
+    .btn-wallet {
+        padding: 5px 12px;
+        font-size: 12px;
+    }
+}
+
+
+.btn-wallet:hover {
+    background: #45a049;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 8px rgba(76, 175, 80, 0.3);
+}

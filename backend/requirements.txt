@@ -1,0 +1,30 @@
+# FastAPI Core
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.3
+pydantic-settings==2.1.0
+
+# Database
+motor==3.3.2  # Async MongoDB driver
+pymongo==4.6.1
+
+# Authentication & Security
+python-jose[cryptography]==3.3.0  # JWT
+bcrypt==4.1.2  # Password hashing
+python-multipart==0.0.6  # For form data
+
+# SMS Service (Optional)
+twilio==8.11.1
+
+# Development
+python-dotenv==1.0.0
+
+# Date utilities
+python-dateutil==2.8.2
+
+# Payment & QR Code
+qrcode[pil]==7.4.2  # QR code generation
+Pillow==10.2.0  # Image processing
+
+# File handling
+aiofiles==23.2.1  # Async file operations

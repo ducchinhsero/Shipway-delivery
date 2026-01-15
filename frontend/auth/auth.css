@@ -1,0 +1,410 @@
+/* ===== RESET & DEFAULTS ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+  background: #eaf4ff;
+  background-image: url('img/background.jpeg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+  position: relative;
+}
+
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #eaf4ff;
+  opacity: 0.7;
+  z-index: -1;
+}
+
+/* ===== LAYOUT ===== */
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 40px 16px;
+}
+
+/* ===== HEADER ===== */
+.header {
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.logo {
+  color: #0068ff;
+  font-size: 42px;
+  font-weight: 700;
+}
+
+.logo-img {
+  max-width: 200px;
+  height: auto;
+  display: block;
+  margin: 0 auto;
+}
+
+.desc {
+  margin-top: 8px;
+  color: #444;
+  font-size: 14px;
+}
+
+/* ===== CARD ===== */
+.card {
+  background: #fff;
+  border-radius: 14px;
+  padding: 32px;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+  text-align: center;
+  font-size: 18px;
+  margin-bottom: 24px;
+}
+
+.card.hidden {
+  display: none;
+}
+
+/* ===== INPUT ===== */
+.input-group {
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #ddd;
+  margin-bottom: 16px;
+}
+
+.prefix {
+  margin-right: 8px;
+  color: #555;
+}
+
+input,
+select {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 14px 0;
+  flex: 1;
+  background: transparent;
+  color: #333;
+}
+
+select {
+  cursor: pointer;
+}
+
+input::placeholder {
+  color: #999;
+}
+
+input:disabled {
+  background-color: #f5f5f5;
+  color: #ccc;
+}
+
+input:invalid:not(:placeholder-shown) {
+  border-bottom-color: #ff4444;
+}
+
+/* ===== PHONE INPUT ===== */
+.phone-group {
+  flex-wrap: wrap;
+}
+
+.country-select {
+  padding: 14px 8px;
+  flex: 0 0 auto;
+  margin-right: 8px;
+}
+
+.phone-group input {
+  flex: 1;
+  min-width: 150px;
+}
+
+/* ===== OTP SECTION ===== */
+#otpSection {
+  margin-bottom: 16px;
+}
+
+.otp-inputs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.otp-input {
+  width: 50px;
+  height: 50px;
+  font-size: 20px;
+  text-align: center;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  padding: 0;
+}
+
+.otp-input:focus {
+  border-color: #0068ff;
+  outline: none;
+}
+
+.otp-input.hidden {
+  display: none;
+}
+
+/* ===== ROLE SELECTOR ===== */
+.role-selector {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 24px;
+}
+
+.role-option {
+  flex: 1;
+  cursor: pointer;
+}
+
+.role-label {
+  display: block;
+  padding: 12px;
+  border: 2px solid #ddd;
+  border-radius: 8px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.role-option input:checked + .role-label {
+  border-color: #0068ff;
+  background-color: #f0f7ff;
+  color: #0068ff;
+}
+
+/* ===== BUTTONS ===== */
+button {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  width: 100%;
+  padding: 14px;
+  background: #0068ff;
+  color: #fff;
+  border-radius: 8px;
+  margin-bottom: 16px;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background: #0052cc;
+}
+
+.btn-primary:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
+.btn-primary.loading {
+  opacity: 0.7;
+}
+
+/* ===== MESSAGES ===== */
+.form-message {
+  padding: 12px;
+  margin-bottom: 16px;
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  min-height: 20px;
+}
+
+.form-message.hidden {
+  display: none;
+}
+
+.form-message.success {
+  background-color: #e8f5e9;
+  color: #2e7d32;
+  border: 1px solid #c8e6c9;
+}
+
+.form-message.error {
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
+}
+
+.form-message.info {
+  background-color: #e3f2fd;
+  color: #1565c0;
+  border: 1px solid #bbdefb;
+}
+
+/* ===== DIVIDER ===== */
+.divider {
+  height: 1px;
+  background: #ddd;
+  margin: 24px 0;
+}
+
+/* ===== LINKS ===== */
+.link {
+  display: inline-block;
+  color: #0068ff;
+  text-decoration: none;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.link:hover {
+  color: #0052cc;
+  text-decoration: underline;
+}
+
+.link.strong {
+  font-weight: 600;
+  display: block;
+  text-align: center;
+}
+
+/* ===== OTP NOTIFICATION ===== */
+.otp-notification {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #fff;
+  border: 2px solid #0068ff;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+  max-width: 350px;
+}
+
+.otp-notification.hidden {
+  display: none;
+}
+
+.otp-notification h3 {
+  color: #0068ff;
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+.otp-notification p {
+  color: #333;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.otp-code {
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  color: #0068ff;
+  font-size: 16px;
+}
+
+.otp-note {
+  color: #999;
+  font-size: 12px;
+  margin-top: 12px;
+}
+
+.otp-notification .btn-primary {
+  width: 100%;
+  margin-top: 12px;
+}
+
+/* ===== FORM VALIDATION ===== */
+form.submitted input:invalid:not(:placeholder-shown) {
+  border-bottom-color: #ff4444;
+}
+
+form.submitted .form-message:empty {
+  display: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 480px) {
+  .page {
+    padding: 20px 12px;
+  }
+
+  .card {
+    padding: 24px;
+  }
+
+  .otp-notification {
+    right: 10px;
+    left: 10px;
+    max-width: none;
+  }
+}
+
+/* ===== ANIMATIONS ===== */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card {
+  animation: slideDown 0.3s ease-out;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.form-message.error {
+  animation: shake 0.3s ease-out;
+}
+
+/* Style cho nút Back */
+.card {
+  position: relative; /* Đảm bảo nút con căn lề theo card */
+  padding-top: 40px;  /* Tạo không gian phía trên để không đè vào tiêu đề h2 */
+}
+
+.back-home-btn {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  color: #666;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  transition: color 0.3s ease;
+}
+
+.back-home-btn:hover {
+  color: #007bff; /* Màu xanh khi hover, bạn có thể đổi theo màu chủ đạo của Shipway */
+}

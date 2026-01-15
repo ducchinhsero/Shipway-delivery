@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Shipway - Ví & Thanh toán</title>
+  <link rel="stylesheet" href="../../shared/header.css">
+  <link rel="stylesheet" href="css/wallet.css">
+</head>
+
+<body data-page="wallet-overview" data-protected data-required-role="user">
+<div id="app-header"></div>
+<div class="page">
+
+  <!-- ===== PAGE HEADER ===== -->
+  <div class="page-header">
+    <div class="page-header-left">
+      <a href="../dashboard/index.html" class="back-home-btn" title="Quay về trang chủ">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </a>
+      <div class="page-header-content">
+        <h1 class="page-title">Ví & Thanh toán</h1>
+        <p class="page-desc">
+          Quản lý ví và thanh toán<br>
+          Nạp tiền và xem lịch sử giao dịch
+        </p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===== WALLET BALANCE ===== -->
+  <div class="card">
+    <h2>Số dư tài khoản</h2>
+    <div class="balance-display">
+      <div class="balance-amount" id="walletBalance">0.000 ₫</div>
+      <div class="balance-label">Số dư khả dụng</div>
+    </div>
+    <button class="btn-primary" data-action="goto-topup">
+      Nạp tiền vào tài khoản / Rút tiền
+    </button>
+  </div>
+
+  <!-- ===== PAYMENT METHODS ===== -->
+  <div class="card">
+    <h3>Đơn hàng cần thanh toán</h3>
+    <div class="table-responsive">
+      <table class="order-table">
+        <thead>
+          <tr>
+            <th>ID Đơn</th>
+            <th>Địa điểm</th>
+            <th>Giá tiền</th>
+            <th>Thao tác</th>
+          </tr>
+        </thead>
+        <tbody id="unpaidOrderList">
+          <tr>
+            <td>#SW1024</td>
+            <td>Quận 1, TP.HCM</td>
+            <td><strong>50.000 ₫</strong></td>
+            <td>
+              <button class="btn-pay-small" data-pay-order data-order-id="SW1024" data-order-amount="50000" data-order-destination="Quận 1, TP.HCM">Thanh toán</button>
+            </td>
+          </tr>
+          <tr>
+            <td>#SW1025</td>
+            <td>Quận 7, TP.HCM</td>
+            <td><strong>120.000 ₫</strong></td>
+            <td>
+              <button class="btn-pay-small" data-pay-order data-order-id="SW1025" data-order-amount="120000" data-order-destination="Quận 7, TP.HCM">Thanh toán</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <!-- ===== TRANSACTION HISTORY ===== -->
+  <div class="card" id="transactionHistoryCard">
+    <h3>Lịch sử giao dịch gần đây</h3>
+    <div class="transaction-list" id="transactionList">
+      <!-- Transactions will be loaded here -->
+    </div>
+    <button class="btn-outline" data-action="load-more-transactions">Xem thêm</button>
+  </div>
+
+
+</div>
+
+<div id="app-footer"></div>
+
+<!-- Scripts -->
+<script type="module" src="../../shared/auth-guard.js"></script>
+<script src="../../shared/header.js"></script>
+<script src="js/history.js"></script>
+<script src="js/qr-payment.js"></script>
+<script src="js/wallet.js"></script>
+</body>
+</html>
