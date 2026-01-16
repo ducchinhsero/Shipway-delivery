@@ -76,7 +76,12 @@ async def custom_swagger_ui_html(req: Request):
 # CORS Configuration
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # In production, specify exact origins
+    allow_origins=[
+        "http://localhost:8000",
+        "http://localhost:3000",
+        "https://*.vercel.app",  # Allow all Vercel deployments
+        "*"  # Allow all origins (for development)
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
